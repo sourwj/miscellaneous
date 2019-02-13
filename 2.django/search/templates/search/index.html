@@ -1,0 +1,10 @@
+{% block content %}
+    <h2>Loan Page</h2>
+        <ul>
+            {% for modelname in model_list %}
+                {% with "search:"|add:modelname|lower|add:"_list" as urlvar %}
+                    <li><a href = "{% url urlvar %}">{{modelname}}</a></li>
+                {% endwith %}
+            {% endfor %}
+        </ul>
+{% endblock content %}

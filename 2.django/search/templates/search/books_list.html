@@ -1,0 +1,19 @@
+{% block content %}
+    <h2>Top50 of 2018</h2>
+        <table class = "books_list">
+            <tr>
+                <th>Ranking</th>
+                <th>BookTitle</th>
+                <th>Publisher</th>
+                <th>Hits</th>
+            </tr>
+            {% for book in books_list %}
+                <tr>
+                    <td align = "center", width = "70">{{ forloop.counter }}</td>
+                    <td align = "center", width = "400">{{ book.bName }}</td>
+                    <td align = "center", width = "200">{{ book.publisher }}</td>
+                    <td>{{ book.loanCnt }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+{% endblock content %}

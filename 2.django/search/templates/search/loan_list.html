@@ -1,0 +1,16 @@
+<!DOCTYPE html> 
+<html lang="ko-KR"> 
+<head> 
+    <meta charset="utf-8"/> 
+    <title>Loan</title> 
+</head>
+
+<h1>대출 이력 페이지</h1>
+
+{% block content %}
+    <ul>
+        {% for loan in object_list %}
+            <li><a href="{% url 'search:loan_detail' loan.lCode %}">{{ loan.lCode }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
