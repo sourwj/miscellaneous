@@ -1,0 +1,21 @@
+<!DOCTYPE html> 
+<html lang="ko-KR"> 
+<head> 
+    <meta charset="utf-8"/> 
+    <title>Loan</title> 
+</head>
+
+<h1>{{ user.mName }}님의 대출 이력 목록</h1>
+{% block content %}
+    <ul>
+        {% for loan in object_list %}
+        <table>
+            <tr>
+                <td width = "100">{{ loan.loanDate }}</td>
+                <td width = "100">{{ loan.returnDate }}</td>
+                <!-- <td><a href = "{% url 'mypage:loan_detail' %}"></a>{{ loan.bName }}</td> -->
+                <td>{{ loan.bName }}</td>
+        </table>
+        {% endfor %}
+    </ul>
+{% endblock content %}

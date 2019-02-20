@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pages',
     'users',
-    'search',
+    'mypage',
 ]
 
 AUTH_USER_MODEL = 'users.Customuser'
@@ -134,7 +134,7 @@ STATICFILES_DIRS = (
 )
 
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'home' 
 LOGOUT_REDIRECT_URL = 'home'
 
 

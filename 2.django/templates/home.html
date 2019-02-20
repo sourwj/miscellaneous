@@ -47,7 +47,6 @@
 
     <!-- ##### Header Area Start ##### -->
     <header class="header-area">
-
         <!-- Top Header Area -->
         <div class="top-header-area bg-img bg-overlay" style="background-image: url(static/img/bg-img/header.jpg);">
             <div class="container h-100">
@@ -159,8 +158,10 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    <li><a href="single-post.html">Blog</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="single-post.html">Blog</a></li>                              
+                                    {% if user.is_authenticated %}
+                                        <li><a href = "{% url 'mypage:index' %}">My Library</a></li>
+                                    {% endif %}
                                 </ul>
 
                                 <!-- Login/Register -->

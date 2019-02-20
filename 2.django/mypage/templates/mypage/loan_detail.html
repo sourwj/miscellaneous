@@ -1,0 +1,6 @@
+{% block content %}
+    <h1>도서 상세 정보</h1>
+    {% for loan in object.all %}
+        <li>대출코드: {{ loan.lCode }} 도서명: {{ loan.bName }} 대출일자: {{ loan.loanDate }} 반납일자: {{ loan.returnDate }} </li>
+    {% endfor %}
+{% endblock content %}

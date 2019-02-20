@@ -1,0 +1,7 @@
+{% block content %}
+    <h2>My page</h2>
+        <ul>
+            <li><a href = "{% url 'mypage:loan_list' %}">My previous loan records</a></li>
+            <li><a href = "{% url 'mypage:books_list' %}">Check out top 50 book list of 2018!</a></li>
+        </ul>
+{% endblock content %}
