@@ -1,0 +1,293 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>community</title>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+	<link rel="stylesheet" href="{% static 'style.css' %}">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Bluesky template project">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+	<link href="{% static 'splugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/properties.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/properties_responsive.css' %}">
+	<style>
+	a:hover { 
+		color: #FF4500;
+	}
+	</style>
+</head>
+<body>
+{% block content %}
+ <!-- ##### Header Area Start ##### -->
+ <header class="header-area">
+	<!-- Top Header Area -->
+	<div class="top-header-area bg-img bg-overlay" style="background-image: url('{% static 'img/bg-img/header.jpg' %}');">
+		<div class="container h-100">
+			<div class="row h-100 align-items-center justify-content-between">
+				<div class="col-12 col-sm-6">
+					<!-- Top Social Info -->
+					<div class="top-social-info">
+						<a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+						<a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+						<a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+						<a href="#" data-toggle="tooltip" data-placement="bottom" title="Dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+						<a href="#" data-toggle="tooltip" data-placement="bottom" title="Behance"><i class="fa fa-behance" aria-hidden="true"></i></a>
+						<a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6 col-lg-5 col-xl-4">
+					<!-- Top Search Area -->
+					<div class="top-search-area">
+						<form action="#" method="post">
+							<input type="search" name="top-search" id="topSearch" placeholder="Search">
+							<button type="submit" class="btn"><i class="fa fa-search"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>    
+	<div class="logo-area">
+		<a href="/"><h1>Culture Clinic</h1></a>
+	</div>
+
+	<!-- Navbar Area -->
+	<div class="bueno-main-menu" id="sticker">
+		<div class="classy-nav-container breakpoint-off">
+			<div class="container">
+				<!-- Menu -->
+				<nav class="classy-navbar justify-content-between" id="buenoNav">
+
+					<!-- Toggler -->
+					<div id="toggler"><img src="{% static 'img/core-img/toggler.png' %}" alt=""></div>
+
+					<!-- Navbar Toggler -->
+					<div class="classy-navbar-toggler">
+						<span class="navbarToggler"><span></span><span></span><span></span></span>
+					</div>
+
+					<!-- Menu -->
+					<div class="classy-menu">
+
+						<!-- Close Button -->
+						<div class="classycloseIcon">
+							<div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+						</div>
+
+						<!-- Nav Start -->
+						<div class="classynav">
+							<ul>
+								<li><a href="/">Home</a></li>
+								<li><a href="search">Search</a></li>
+								<li><a href="#">Culture</a>
+									<ul class="dropdown">
+										<li><a href="book">book</a></li>
+										<li><a href="movie">movie</a></li>
+										<li><a href="single-post.html">travel</a></li>
+
+									</ul>
+								</li>
+								<li><a href="community">Community</a></li>
+								<li><a href="contact.html">About Us</a></li>                       
+								{% if user.is_authenticated %}
+									<li><a href = "{% url 'mypage:index' %}">My Library</a></li>
+								{% endif %}
+							</ul>
+						<!-- Login/Register -->
+						<div class="login-area">
+								{% if user.is_authenticated %}
+									Hi {{ user.username }} &nbsp;&nbsp;
+									<a href="{% url 'logout' %}">Log out</a>
+									{% else %}
+									<a href="{% url 'login' %}">Log In </a>&nbsp;&nbsp;
+									<a href="{% url 'signup' %}">Sign Up</a>
+								{% endif %}
+						</div>
+					</div>
+						<!-- Nav End -->
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+</header>
+<!-- ##### Header Area End ##### -->
+<div class="super_container">
+	<!-- Properties -->
+
+	<div class="properties">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<br>
+					<br>					
+					<h2 style="text-align:center">당신의 생각을 공유하세요</h2>
+					<br>
+					<div class="section_title text-center"><a href="{% url "Board_new" %}">소모임 개설하기</a></div>
+					<br>
+					<br>
+					<br>
+                </div>
+			</div>
+			<div class="row properties_row">
+			
+				<!-- Property -->
+
+				{% for Board in object_list reversed %}
+				<div class="col-xl-4 col-lg-6 property_col">
+					<div class="property">
+						<div class="property_image">
+							{% if Board.image %}
+							<a href="{% url "Board_view" Board.id %}"><img src="{{ Board.image.url }}" style="width: 220px; height: 220px;display:block;margin-left:auto;margin-right:auto"alt=""></a>
+							{% else %}
+							<a href="{% url "Board_view" Board.id %}"><img src="https://images.dailyhive.com/20170403063844/coffee.jpg" style="width: 220px; height: 220px;display:block;margin-left:auto;margin-right:auto" alt=""></a>
+							{% endif %}
+							<br>
+							<div class="tag_featured property_tag" style="text-align:center"><a href="#">{{ Board.category }}</a></div>
+							<br>
+						</div>
+						<div class="property_body text-center">
+							<div class="property_title"><a href="{% url "Board_view" Board.id %}">{{ Board.title }}</a></div>
+							<div class="property_date">{{ Board.date }}</div>
+							<div class="property_place">{{ Board.place }}</div>
+						</div>
+						
+						<div class="property_footer d-flex flex-row align-items-center justify-content-start">
+							<!-- <div><div class="property_icon"><a href="{% url "Board_view" Board.id %}"><img src="{% static 'images/icon_1.png' %}" alt=""></div><p style = "text-align:center">자세히 보기</p></a></div> -->
+						</div>
+						<br>
+						<br>
+					</div>
+				</div>
+				{% endfor %}
+	    	</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}
+	<!-- ##### Footer Area Start ##### -->
+	<footer class="footer-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-sm-5">
+					<!-- Copywrite Text -->
+					<p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+				</div>
+				<div class="col-12 col-sm-7">
+					<!-- Footer Nav -->
+					<div class="footer-nav">
+						<ul>
+							<li class="active"><a href="#">Home</a></li>
+							<li><a href="#">Recipes</a></li>
+							<li><a href="#">About Us</a></li>
+							<li><a href="#">Blog</a></li>
+							<li><a href="#">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- </footer>
+	<footer class="footer">
+		<div class="footer_main">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3">
+						<div class="footer_logo"><a href="#"><img src="{% static 'images/logo_large.png' %}" alt=""></a></div>
+					</div>
+					<div class="col-lg-9 d-flex flex-column align-items-start justify-content-end">
+						<div class="footer_title">Latest Properties</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 footer_col">
+						<div class="footer_about">
+							<div class="footer_about_text">Donec in tempus leo. Aenean ultricies mauris sed quam lacinia lobortis. Cras ut vestibulum enim, in gravida nulla. Curab itur ornare nisl at sagittis cursus.</div>
+						</div>
+					</div>
+					<div class="col-lg-3 footer_col">
+						<div class="footer_latest d-flex flex-row align-items-start justify-content-start">
+							<div><div class="footer_latest_image"><img src="{% static 'images/footer_latest_1.jpg' %}" alt=""></div></div>
+							<div class="footer_latest_content">
+								<div class="footer_latest_place">Miami</div>
+								<div class="footer_latest_name"><a href="#">Sea view property</a></div>
+								<div class="footer_latest_date">$ 1. 234 981</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 footer_col">
+						<div class="footer_latest d-flex flex-row align-items-start justify-content-start">
+							<div><div class="footer_latest_image"><img src="images/footer_latest_2.jpg" alt=""></div></div>
+							<div class="footer_latest_content">
+								<div class="footer_latest_place">Miami</div>
+								<div class="footer_latest_name"><a href="#">Town House</a></div>
+								<div class="footer_latest_date">$ 1. 234 981</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 footer_col">
+						<div class="footer_latest d-flex flex-row align-items-start justify-content-start">
+							<div><div class="footer_latest_image"><img src="images/footer_latest_3.jpg" alt=""></div></div>
+							<div class="footer_latest_content">
+								<div class="footer_latest_place">Miami</div>
+								<div class="footer_latest_name"><a href="#">Modern House</a></div>
+								<div class="footer_latest_date">$ 1. 234 981</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer_bar">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="footer_bar_content d-flex flex-row align-items-center justify-content-start">
+							<div class="cr"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+<!-- Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> -->
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+<!-- </div> -->
+							<!-- <div class="footer_nav">
+								<ul>
+									<li><a href="index.html">Home</a></li>
+									<li><a href="#">About us</a></li>
+									<li><a href="properties.html">Properties</a></li>
+									<li><a href="news.html">News</a></li>
+									<li><a href="contact.html">Contact</a></li>
+								</ul>
+							</div>
+							<div class="footer_phone ml-auto"><span>call us: </span>652 345 3222 11</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div> --> -->
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TimelineMax.min.js' %}"></script>
+<script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'js/properties.js' %}"></script>
+</body>
+</html>

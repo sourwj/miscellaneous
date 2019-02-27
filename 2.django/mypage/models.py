@@ -22,18 +22,23 @@ class members(models.Model):
     mName = models.CharField(max_length=20)
     sex = models.CharField(max_length=1)
     passwd = models.CharField(max_length=20)
+    mImagePath = models.CharField(max_length=255)
 
 class loan(models.Model):
     lCode = models.AutoField(primary_key=True)
     id = models.ForeignKey(members, on_delete=models.CASCADE)
     bName = models.CharField(max_length=255)
     rate = models.DecimalField(max_digits=2, decimal_places=1)
-    loanDate = models.IntegerField()
-    returnDate = models.IntegerField()
+    bImage = models.CharField(max_length=255)
 
     def __str__(self):
         return self.id
 
-# class fav_classno(models.Model):
-    # id = models.ForeignKey(members, primary_key=True, on_delete=models.CASCADE, db_column = 'id')
-    # classno = models.ForeignKey(classno, on_delete=models.CASCADE, db_column = 'classno')
+class recommendations(models.Model):
+    rCode = models.AutoField(primary_key=True)
+    id = models.ForeignKey(members, on_delete=models.CASCADE)
+    bName = models.CharField(max_length=255)
+    bImage = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.id

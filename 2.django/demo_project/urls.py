@@ -22,4 +22,5 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('users/', include('django.contrib.auth.urls')),
     path('mypage/', include('mypage.urls')),
+    path('community/', include('community.urls')),
 ]

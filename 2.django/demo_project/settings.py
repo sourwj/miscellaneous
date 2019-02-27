@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'pages',
     'users',
     'mypage',
+    'community',
 ]
 
 AUTH_USER_MODEL = 'users.Customuser'

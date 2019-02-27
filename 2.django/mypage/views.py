@@ -1,38 +1,29 @@
+import json
+from django.db.models import Avg
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404
-from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic import TemplateView
 from django.views import generic
-from .models import books, loan
+from .models import loan, recommendations, members
 
-class LoanModelView(TemplateView):
+class LoanListView(LoginRequiredMixin, ListView):
+    model = loan
     template_name = 'mypage/index.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['model_list'] = ['loan', 'books']
+    def get_context_data(self, *args, **kwargs):
+        context = super(LoanListView, self).get_context_data(*args, **kwargs)
+        context['top_rates'] = loan.objects.filter(id_id = self.request.user.username).order_by('-rate')[:5]
+        context['read_books'] = loan.objects.filter(id_id = self.request.user.username)
+        context['num_of_read_books'] = loan.objects.filter(id_id = self.request.user.username).count()
+        raw_rates = loan.objects.filter(id_id = self.request.user.username).values_list('bName', 'rate')
+        rNames = []
+        rRates = []
+        for key, value in raw_rates:
+            rNames.append(key)
+            rRates.append(float(value))
+        context['bName_list'] = rNames
+        context['rate_list'] = rRates
+        context['avg_rate'] = loan.objects.filter(id_id = self.request.user.username).aggregate(Avg('rate'))
+        context['rec_list'] = recommendations.objects.filter(id_id = self.request.user.username)
+        context['profile_pics'] = members.objects.filter(id = self.request.user.username)
         return context
-
-class BookListView(ListView):
-    print('---BookListView---')
-    model = books
-    print('---모델 : ',model)
-    queryset = books.objects.all().order_by('-loanCnt')[:50]
-    template_name = 'mypage/books.html' 
-    
-class LoanListView(LoginRequiredMixin, ListView):
-    print('---LoanListView---')
-    model = loan
-    print('---모델 : ',model)
-    template_name = 'mypage/loan_list.html'
-
-    def get_queryset(self):
-        return loan.objects.filter(id_id = self.request.user.username)
-        
-class LoanDetailView(DetailView):
-    model = loan
-    def get_object(self):
-        return get_object_or_404(loan, pk=self.request.session['loan.id_id'])
-  
-    # model.objects.all().prefetch_related('books')
